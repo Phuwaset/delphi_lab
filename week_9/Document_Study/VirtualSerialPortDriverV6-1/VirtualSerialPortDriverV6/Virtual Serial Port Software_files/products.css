@@ -1,0 +1,39 @@
+#products {
+	BACKGROUND: #272727; HEIGHT: 1340px
+}
+#products .left {
+	BACKGROUND: url(/images/allprods_left_bg.gif) no-repeat left bottom; HEIGHT: 1340px
+}
+#products .right {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 22px; BACKGROUND: url(/images/allprods_right_bg.gif) no-repeat right bottom; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; HEIGHT: 1340px
+}
+#products .product {
+	BACKGROUND: url(/images/proditem_bg.gif) repeat-x 50% top; FLOAT: left; MARGIN: 24px 18px 0px 0px; TEXT-ALIGN: left
+}
+#products .product .left {
+	BACKGROUND: url(/images/proditem_left_bg.gif) no-repeat left top; FLOAT: left; HEIGHT: auto
+}
+#products .product .right {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/images/proditem_right_bg.gif) no-repeat right top; FLOAT: left; PADDING-BOTTOM: 0px; WIDTH: 400px; PADDING-TOP: 24px; HEIGHT: auto
+}
+#products .product .box {
+	FLOAT: left; MARGIN: 0px 23px 0px 17px
+}
+#products .product .h2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; FONT-SIZE: 24px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 10px; COLOR: #e3f7ff; PADDING-TOP: 0px; FONT-FAMILY: Tahoma; TEXT-DECORATION: none
+}
+#products .product .h2:hover {
+	COLOR: #fff
+}
+#products .product P {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; FONT-SIZE: 11px; FLOAT: left; PADDING-BOTTOM: 0px! important; MARGIN: 0px; WIDTH: 250px; COLOR: #e6f8ff; PADDING-TOP: 0px! important; FONT-FAMILY: Tahoma
+}
+#products .product .links {
+	FLOAT: left; MARGIN: 10px 0px 0px; COLOR: #bcc9ff
+}
+#products .product .links A {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #bcc9ff; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+#products .product .links A:hover {
+	TEXT-DECORATION: underline
+}

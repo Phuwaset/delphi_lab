@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{FE27ABDE-2568-457E-892B-E795FC5E36F7}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Exercise\Application_09.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Document_Study\week_9\Ex_Comport_1\Project1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Exercise\Application_03.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Application_09">
+        <MSBuild Projects="Exercise\Application_09.dproj"/>
+    </Target>
+    <Target Name="Application_09:Clean">
+        <MSBuild Projects="Exercise\Application_09.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Application_09:Make">
+        <MSBuild Projects="Exercise\Application_09.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project1">
+        <MSBuild Projects="Document_Study\week_9\Ex_Comport_1\Project1.dproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="Document_Study\week_9\Ex_Comport_1\Project1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="Document_Study\week_9\Ex_Comport_1\Project1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Application_03">
+        <MSBuild Projects="Exercise\Application_03.dproj"/>
+    </Target>
+    <Target Name="Application_03:Clean">
+        <MSBuild Projects="Exercise\Application_03.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Application_03:Make">
+        <MSBuild Projects="Exercise\Application_03.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Application_09;Project1;Application_03"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Application_09:Clean;Project1:Clean;Application_03:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Application_09:Make;Project1:Make;Application_03:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

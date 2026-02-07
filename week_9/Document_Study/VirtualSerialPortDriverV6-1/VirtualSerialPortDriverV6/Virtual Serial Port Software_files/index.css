@@ -1,0 +1,102 @@
+#splash {
+	MARGIN-TOP: 10px; HEIGHT: 250px
+}
+#splash #bestProduct {
+	BACKGROUND: url(/images/splash_prod_bg.jpg) no-repeat left top; HEIGHT: 100%
+}
+#splash #bestProduct H1 {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; FONT-SIZE: 26px; FLOAT: right; PADDING-BOTTOM: 0px; MARGIN: 35px 0px 0px; WIDTH: 530px; COLOR: #b5c3ff; PADDING-TOP: 0px; FONT-FAMILY: Tahoma; TEXT-ALIGN: left
+}
+#splash #bestProduct H2 {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; FONT-SIZE: 24px; FLOAT: right; PADDING-BOTTOM: 0px; MARGIN: 5px 0px 0px; WIDTH: 530px; COLOR: #fff; PADDING-TOP: 0px; FONT-FAMILY: Tahoma; TEXT-ALIGN: left
+}
+#splash #bestProduct .buttons {
+	CLEAR: both; FLOAT: right; MARGIN: 17px 0px 0px; WIDTH: 530px; TEXT-ALIGN: left
+}
+#splash #bestProduct .buttons IMG {
+	BEHAVIOR: url(/styles/iepngfix.htc); MARGIN-RIGHT: 3px
+}
+#splash #bestProduct #tabs {
+	CLEAR: both; TEXT-ALIGN: left
+}
+#splash #bestProduct #tabs .selTab {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/images/seltab_bg.png) no-repeat left top; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 5px 0px 0px; BEHAVIOR: url(/styles/iepngfix.htc); WIDTH: 212px; PADDING-TOP: 0px; HEIGHT: 29px
+}
+#splash #bestProduct #tabs .tab {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/images/seltab_bg.png) no-repeat left top; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 5px 0px 0px; BEHAVIOR: url(/styles/iepngfix.htc); WIDTH: 212px; PADDING-TOP: 0px; HEIGHT: 29px
+}
+#splash #bestProduct #tabs .tab {
+	BACKGROUND: url(/images/tab_bg.png) no-repeat left top
+}
+#splash #bestProduct #tabs .selTab A {
+	DISPLAY: block; FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #fff; LINE-HEIGHT: 29px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+#splash #bestProduct #tabs .tab A {
+	DISPLAY: block; FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #fff; LINE-HEIGHT: 29px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+#splash #bestProduct #tabs .tab A {
+	COLOR: #fff
+}
+#splash #bestProduct #tabs SUP {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; LINE-HEIGHT: 10px
+}
+#splash #bestProduct #tabs .tab A SPAN {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 28px; BACKGROUND: url(/images/white_arrow.gif) no-repeat left 50%; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+#splash #bestProduct #tabs .selTab A SPAN {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 28px; BACKGROUND: url(/images/white_arrow.gif) no-repeat left 50%; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.productsBlock {
+	BACKGROUND: #272727; HEIGHT: 180px
+}
+.productsBlock .productBlock {
+	BACKGROUND: url(/images/prod_block_sep.gif) no-repeat right center; FLOAT: left; WIDTH: 287px; HEIGHT: 100%; TEXT-ALIGN: left
+}
+.productsBlock .productBlock IMG {
+	FLOAT: left; MARGIN: 0px 5px 0px 30px
+}
+.productsBlock .productBlock H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; FONT-SIZE: 16px; PADDING-BOTTOM: 0px; MARGIN: 0px 5px 10px 0px; COLOR: #e3f7ff; PADDING-TOP: 10px
+}
+.productsBlock .productBlock P {
+	PADDING-RIGHT: 35px; PADDING-LEFT: 45px; FONT-SIZE: 11px; PADDING-BOTTOM: 0px; MARGIN: 15px 0px 0px; COLOR: #e6f8ff; PADDING-TOP: 0px
+}
+.productsBlock .productBlock A.learnMore {
+	DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 11px; BACKGROUND: url(/images/learn_more.gif) no-repeat left top; MARGIN-LEFT: 80px; WIDTH: 146px; COLOR: #fff; LINE-HEIGHT: 18px; HEIGHT: 19px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.productsBlock .productBlock A.learnMore:hover {
+	TEXT-DECORATION: underline
+}
+#infoBlock {
+	BACKGROUND: #393939; HEIGHT: 222px; TEXT-ALIGN: left
+}
+#infoBlock .tl {
+	BACKGROUND: url(/images/info_top_left.gif) no-repeat left top; HEIGHT: 100%
+}
+#infoBlock .tr {
+	BACKGROUND: url(/images/info_top_right.gif) no-repeat right top; HEIGHT: 100%
+}
+#infoBlock .bl {
+	BACKGROUND: url(/images/info_bottom_left.gif) no-repeat left bottom; HEIGHT: 100%
+}
+#infoBlock .br {
+	BACKGROUND: url(/images/info_bottom_right.gif) no-repeat right bottom; HEIGHT: 100%
+}
+#infoBlock .infoB {
+	FONT-SIZE: 11px; BACKGROUND: url(/images/info_sep.gif) no-repeat right top; FLOAT: left; WIDTH: 287px; COLOR: #999
+}
+#infoBlock .infoB .cover {
+	PADDING-RIGHT: 35px; PADDING-LEFT: 35px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; HEIGHT: 175px
+}
+#infoBlock .infoB .cover H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 13px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 10px; COLOR: #ccc; PADDING-TOP: 30px
+}
+#infoBlock .infoB .cover P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 10px 0px 0px 100px; COLOR: #999; PADDING-TOP: 0px
+}
+#infoBlock .infoB .cover STRONG {
+	COLOR: #ccc
+}
+#infoBlock .infoB .learn {
+	MARGIN-LEFT: 180px; COLOR: #ccc! important
+}
