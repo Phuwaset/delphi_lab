@@ -1,0 +1,96 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{E8240A6A-707A-415C-BC0B-A834E6DDEC51}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Application_1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Docs\drive-download-20260221T014710Z-1-001\Ex_TextFile_1\Project_SaveFile.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Docs\drive-download-20260221T014710Z-1-001\Ex_ConfigFile_1\Project_Config.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Application_2.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Application_3.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Docs\drive-download-20260221T014710Z-1-001\Ex_MySQL_1\Project_SQL.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Application_1">
+        <MSBuild Projects="Application_1.dproj"/>
+    </Target>
+    <Target Name="Application_1:Clean">
+        <MSBuild Projects="Application_1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Application_1:Make">
+        <MSBuild Projects="Application_1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project_SaveFile">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_TextFile_1\Project_SaveFile.dproj"/>
+    </Target>
+    <Target Name="Project_SaveFile:Clean">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_TextFile_1\Project_SaveFile.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project_SaveFile:Make">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_TextFile_1\Project_SaveFile.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project_Config">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_ConfigFile_1\Project_Config.dproj"/>
+    </Target>
+    <Target Name="Project_Config:Clean">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_ConfigFile_1\Project_Config.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project_Config:Make">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_ConfigFile_1\Project_Config.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Application_2">
+        <MSBuild Projects="Application_2.dproj"/>
+    </Target>
+    <Target Name="Application_2:Clean">
+        <MSBuild Projects="Application_2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Application_2:Make">
+        <MSBuild Projects="Application_2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Application_3">
+        <MSBuild Projects="Application_3.dproj"/>
+    </Target>
+    <Target Name="Application_3:Clean">
+        <MSBuild Projects="Application_3.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Application_3:Make">
+        <MSBuild Projects="Application_3.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project_SQL">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_MySQL_1\Project_SQL.dproj"/>
+    </Target>
+    <Target Name="Project_SQL:Clean">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_MySQL_1\Project_SQL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project_SQL:Make">
+        <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_MySQL_1\Project_SQL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Application_1;Project_SaveFile;Project_Config;Application_2;Application_3;Project_SQL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Application_1:Clean;Project_SaveFile:Clean;Project_Config:Clean;Application_2:Clean;Application_3:Clean;Project_SQL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Application_1:Make;Project_SaveFile:Make;Project_Config:Make;Application_2:Make;Application_3:Make;Project_SQL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
