@@ -33,6 +33,20 @@ object Form4: TForm4
     Height = 15
     Caption = 'Amp'
   end
+  object Label4: TLabel
+    Left = 280
+    Top = 184
+    Width = 43
+    Height = 15
+    Caption = 'TDBGrid'
+  end
+  object Label5: TLabel
+    Left = 312
+    Top = 16
+    Width = 59
+    Height = 15
+    Caption = 'TStringGrid'
+  end
   object DBNavigator1: TDBNavigator
     Left = 360
     Top = 161
@@ -90,10 +104,32 @@ object Form4: TForm4
   object Load: TButton
     Left = 160
     Top = 440
-    Width = 75
+    Width = 113
     Height = 25
-    Caption = 'Load'
+    Caption = 'Load / Refresh'
     TabOrder = 6
+    OnClick = LoadClick
+  end
+  object StringGrid1: TStringGrid
+    Tag = 4
+    Left = 384
+    Top = 16
+    Width = 320
+    Height = 120
+    ColCount = 4
+    FixedCols = 0
+    RowCount = 12
+    TabOrder = 7
+    ColWidths = (
+      64
+      112
+      64
+      64)
+    ColAligments = (
+      1
+      0
+      1
+      1)
   end
   object FDTable1: TFDTable
     Active = True
@@ -124,5 +160,23 @@ object Form4: TForm4
     VendorLib = 'C:\AppServ\MySQL\lib\libmysql.dll'
     Left = 72
     Top = 184
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = FDTable1
+    ScopeMappings = <>
+    Left = 552
+    Top = 416
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      GridControl = StringGrid1
+      Columns = <>
+    end
   end
 end

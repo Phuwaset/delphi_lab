@@ -10,7 +10,9 @@ uses
   FireDAC.Stan.Def, FireDAC.Phys, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.UI.Intf, FireDAC.VCLUI.Wait, FireDAC.Phys.MySQLDef,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, Vcl.Buttons,
-  FireDAC.Comp.DataSet;
+  FireDAC.Comp.DataSet, Data.Bind.EngExt, Vcl.Bind.DBEngExt, Vcl.Bind.Grid,
+  System.Rtti, System.Bindings.Outputs, Vcl.Bind.Editors, Data.Bind.Components,
+  Data.Bind.Grid, Data.Bind.DBScope;
 
 type
   TForm4 = class(TForm)
@@ -28,6 +30,12 @@ type
     Label3: TLabel;
     SaveFile: TButton;
     Load: TButton;
+    StringGrid1: TStringGrid;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
+    Label4: TLabel;
+    Label5: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure SaveFileClick(Sender: TObject);
     procedure LoadClick(Sender: TObject);

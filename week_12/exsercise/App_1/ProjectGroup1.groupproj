@@ -21,6 +21,15 @@
         <Projects Include="..\Docs\drive-download-20260221T014710Z-1-001\Ex_MySQL_1\Project_SQL.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Pub.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Sub.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="C:\Users\HUAWEI\Downloads\HomeWork2\HomeWork2\P2.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -83,14 +92,41 @@
     <Target Name="Project_SQL:Make">
         <MSBuild Projects="..\Docs\drive-download-20260221T014710Z-1-001\Ex_MySQL_1\Project_SQL.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Pub">
+        <MSBuild Projects="Pub.dproj"/>
+    </Target>
+    <Target Name="Pub:Clean">
+        <MSBuild Projects="Pub.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Pub:Make">
+        <MSBuild Projects="Pub.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Sub">
+        <MSBuild Projects="Sub.dproj"/>
+    </Target>
+    <Target Name="Sub:Clean">
+        <MSBuild Projects="Sub.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Sub:Make">
+        <MSBuild Projects="Sub.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="P2">
+        <MSBuild Projects="C:\Users\HUAWEI\Downloads\HomeWork2\HomeWork2\P2.dproj"/>
+    </Target>
+    <Target Name="P2:Clean">
+        <MSBuild Projects="C:\Users\HUAWEI\Downloads\HomeWork2\HomeWork2\P2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="P2:Make">
+        <MSBuild Projects="C:\Users\HUAWEI\Downloads\HomeWork2\HomeWork2\P2.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Application_1;Project_SaveFile;Project_Config;Application_2;Application_3;Project_SQL"/>
+        <CallTarget Targets="Application_1;Project_SaveFile;Project_Config;Application_2;Application_3;Project_SQL;Pub;Sub;P2"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Application_1:Clean;Project_SaveFile:Clean;Project_Config:Clean;Application_2:Clean;Application_3:Clean;Project_SQL:Clean"/>
+        <CallTarget Targets="Application_1:Clean;Project_SaveFile:Clean;Project_Config:Clean;Application_2:Clean;Application_3:Clean;Project_SQL:Clean;Pub:Clean;Sub:Clean;P2:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Application_1:Make;Project_SaveFile:Make;Project_Config:Make;Application_2:Make;Application_3:Make;Project_SQL:Make"/>
+        <CallTarget Targets="Application_1:Make;Project_SaveFile:Make;Project_Config:Make;Application_2:Make;Application_3:Make;Project_SQL:Make;Pub:Make;Sub:Make;P2:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
