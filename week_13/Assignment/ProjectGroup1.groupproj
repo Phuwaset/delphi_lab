@@ -1,0 +1,156 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{DA6D81EC-6281-4F86-ACC9-03089E684978}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="App_project1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Zip\Ex_ShellApi_1-20260307T062106Z-1-001\Ex_ShellApi_1\PShellApi1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Zip\Ex_DosCmd_1-20260307T063927Z-1-001\Ex_DosCmd_1\PDosCmd1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="App_animation.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Zip\Ex_Animation_1-20260307T070226Z-1-001\Ex_Animation_1\Animation.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="App_Vedieo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="C:\Users\HUAWEI\Documents\Embarcadero\Studio\Projects\new_packages.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="App_Alram_Application.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Zip\SendEmail\SendEmail\PSendMail.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Zip\App4\App4\PLineOA1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="App_SMS_Send.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="App_project1">
+        <MSBuild Projects="App_project1.dproj"/>
+    </Target>
+    <Target Name="App_project1:Clean">
+        <MSBuild Projects="App_project1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="App_project1:Make">
+        <MSBuild Projects="App_project1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PShellApi1">
+        <MSBuild Projects="..\Zip\Ex_ShellApi_1-20260307T062106Z-1-001\Ex_ShellApi_1\PShellApi1.dproj"/>
+    </Target>
+    <Target Name="PShellApi1:Clean">
+        <MSBuild Projects="..\Zip\Ex_ShellApi_1-20260307T062106Z-1-001\Ex_ShellApi_1\PShellApi1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PShellApi1:Make">
+        <MSBuild Projects="..\Zip\Ex_ShellApi_1-20260307T062106Z-1-001\Ex_ShellApi_1\PShellApi1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PDosCmd1">
+        <MSBuild Projects="..\Zip\Ex_DosCmd_1-20260307T063927Z-1-001\Ex_DosCmd_1\PDosCmd1.dproj"/>
+    </Target>
+    <Target Name="PDosCmd1:Clean">
+        <MSBuild Projects="..\Zip\Ex_DosCmd_1-20260307T063927Z-1-001\Ex_DosCmd_1\PDosCmd1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PDosCmd1:Make">
+        <MSBuild Projects="..\Zip\Ex_DosCmd_1-20260307T063927Z-1-001\Ex_DosCmd_1\PDosCmd1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="App_animation">
+        <MSBuild Projects="App_animation.dproj"/>
+    </Target>
+    <Target Name="App_animation:Clean">
+        <MSBuild Projects="App_animation.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="App_animation:Make">
+        <MSBuild Projects="App_animation.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Animation">
+        <MSBuild Projects="..\Zip\Ex_Animation_1-20260307T070226Z-1-001\Ex_Animation_1\Animation.dproj"/>
+    </Target>
+    <Target Name="Animation:Clean">
+        <MSBuild Projects="..\Zip\Ex_Animation_1-20260307T070226Z-1-001\Ex_Animation_1\Animation.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Animation:Make">
+        <MSBuild Projects="..\Zip\Ex_Animation_1-20260307T070226Z-1-001\Ex_Animation_1\Animation.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="App_Vedieo">
+        <MSBuild Projects="App_Vedieo.dproj"/>
+    </Target>
+    <Target Name="App_Vedieo:Clean">
+        <MSBuild Projects="App_Vedieo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="App_Vedieo:Make">
+        <MSBuild Projects="App_Vedieo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="new_packages">
+        <MSBuild Projects="C:\Users\HUAWEI\Documents\Embarcadero\Studio\Projects\new_packages.dproj"/>
+    </Target>
+    <Target Name="new_packages:Clean">
+        <MSBuild Projects="C:\Users\HUAWEI\Documents\Embarcadero\Studio\Projects\new_packages.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="new_packages:Make">
+        <MSBuild Projects="C:\Users\HUAWEI\Documents\Embarcadero\Studio\Projects\new_packages.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="App_Alram_Application">
+        <MSBuild Projects="App_Alram_Application.dproj"/>
+    </Target>
+    <Target Name="App_Alram_Application:Clean">
+        <MSBuild Projects="App_Alram_Application.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="App_Alram_Application:Make">
+        <MSBuild Projects="App_Alram_Application.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PSendMail">
+        <MSBuild Projects="..\Zip\SendEmail\SendEmail\PSendMail.dproj"/>
+    </Target>
+    <Target Name="PSendMail:Clean">
+        <MSBuild Projects="..\Zip\SendEmail\SendEmail\PSendMail.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PSendMail:Make">
+        <MSBuild Projects="..\Zip\SendEmail\SendEmail\PSendMail.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PLineOA1">
+        <MSBuild Projects="..\Zip\App4\App4\PLineOA1.dproj"/>
+    </Target>
+    <Target Name="PLineOA1:Clean">
+        <MSBuild Projects="..\Zip\App4\App4\PLineOA1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PLineOA1:Make">
+        <MSBuild Projects="..\Zip\App4\App4\PLineOA1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="App_SMS_Send">
+        <MSBuild Projects="App_SMS_Send.dproj"/>
+    </Target>
+    <Target Name="App_SMS_Send:Clean">
+        <MSBuild Projects="App_SMS_Send.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="App_SMS_Send:Make">
+        <MSBuild Projects="App_SMS_Send.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="App_project1;PShellApi1;PDosCmd1;App_animation;Animation;App_Vedieo;new_packages;App_Alram_Application;PSendMail;PLineOA1;App_SMS_Send"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="App_project1:Clean;PShellApi1:Clean;PDosCmd1:Clean;App_animation:Clean;Animation:Clean;App_Vedieo:Clean;new_packages:Clean;App_Alram_Application:Clean;PSendMail:Clean;PLineOA1:Clean;App_SMS_Send:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="App_project1:Make;PShellApi1:Make;PDosCmd1:Make;App_animation:Make;Animation:Make;App_Vedieo:Make;new_packages:Make;App_Alram_Application:Make;PSendMail:Make;PLineOA1:Make;App_SMS_Send:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

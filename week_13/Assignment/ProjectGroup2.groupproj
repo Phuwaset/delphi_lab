@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8011438C-8E00-498F-9FED-CC40F0331B7A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\Zip\SendEmail\SendEmail\PSendMail.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Zip\App4\App4\PLineOA1.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PSendMail">
+        <MSBuild Projects="..\Zip\SendEmail\SendEmail\PSendMail.dproj"/>
+    </Target>
+    <Target Name="PSendMail:Clean">
+        <MSBuild Projects="..\Zip\SendEmail\SendEmail\PSendMail.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PSendMail:Make">
+        <MSBuild Projects="..\Zip\SendEmail\SendEmail\PSendMail.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PLineOA1">
+        <MSBuild Projects="..\Zip\App4\App4\PLineOA1.dproj"/>
+    </Target>
+    <Target Name="PLineOA1:Clean">
+        <MSBuild Projects="..\Zip\App4\App4\PLineOA1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PLineOA1:Make">
+        <MSBuild Projects="..\Zip\App4\App4\PLineOA1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PSendMail;PLineOA1"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PSendMail:Clean;PLineOA1:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PSendMail:Make;PLineOA1:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
