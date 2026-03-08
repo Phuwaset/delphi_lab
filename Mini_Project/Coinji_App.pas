@@ -27,6 +27,7 @@ type
     Category: String;
     TxDate: TDateTime;
     SlipPath: String; // <--- เพิ่มบรรทัดนี้ (เก็บที่อยู่ไฟล์รูป)
+    TransType: String; // <--- เพิ่มอันนี้ (เก็บคำว่า 'รายรับ' หรือ 'รายจ่าย')
   end;   // <--- เช็คบรรทัดนี้ครับ ต้องมี end; ปิดท้าย Record
 
   TForm1 = class(TForm)
@@ -59,6 +60,7 @@ type
     chartBar: TChart;
     Series2: TBarSeries;
     btnExit: TBitBtn;
+    rgType: TRadioGroup;
     procedure FormCreate(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnAskAIClick(Sender: TObject);
@@ -194,7 +196,12 @@ begin
     TxDate   := dtpDate.Date;
     // บันทึก Path รูป (เอามาจาก Hint ที่เราฝากไว้เมื่อกี้)
     SlipPath := imgSlip.Hint;
-  end;
+    // ดึงค่าจาก RadioGroup
+    if rgType.ItemIndex = 0 then
+      TransType := 'รายรับ'
+    else
+      TransType := 'รายจ่าย';
+    end;
   // เคลียร์รูปออกจากหน้าจอ เตรียมรับรายการใหม่
   imgSlip.Picture := nil;
   imgSlip.Hint := '';
@@ -286,58 +293,96 @@ end;
 procedure TForm1.UpdateDashboard;
 var
   i, j: Integer;
-  Total: Double;
-  // ตัวแปรสำหรับคำนวณกราฟแท่ง
+  TotalIncome, TotalExpense, Balance: Double;
+  // ตัวแปรสำหรับกราฟแท่ง
   DayList: TStringList;
   DaySum: Double;
   DateStr: String;
 begin
-  // 1. คำนวณยอดรวม (เหมือนเดิม)
-  Total := 0;
+  // --- ส่วนที่ 1: คำนวณยอดเงินรวม (แยกรับ-จ่าย) ---
+  TotalIncome := 0;
+  TotalExpense := 0;
+
   for i := 1 to CountItem do
-    Total := Total + MyData[i].Amount;
+  begin
+    if MyData[i].TransType = 'รายรับ' then
+      TotalIncome := TotalIncome + MyData[i].Amount
+    else
+      // ถ้าเป็น รายจ่าย หรือ ค่าว่าง(ของเก่า) ให้เหมาเป็นรายจ่าย
+      TotalExpense := TotalExpense + MyData[i].Amount;
+  end;
 
-  lblStatus.Caption := 'ยอดรวม: ' + FloatToStrF(Total, ffNumber, 10, 2) + ' บาท';
-  // ... (Logic เปลี่ยนสีตัวหนังสือ เหมือนเดิม) ...
+  Balance := TotalIncome - TotalExpense;
 
-  // 2. วาดกราฟวงกลม (Pie) - แยกตามหมวดหมู่
-  chartPie.Series[0].Clear;
-  // (โค้ดเดิมที่ใช้วาดกราฟวงกลม)
-  for i := 1 to CountItem do
-    chartPie.Series[0].Add(MyData[i].Amount, MyData[i].Category, clTeeColor);
+  // --- ส่วนที่ 2: แสดงผลตัวเลขสรุป (3 บรรทัด) ---
+  // ใช้ #13 เพื่อขึ้นบรรทัดใหม่
+  lblStatus.Caption := 'รายรับรวม: ' + FloatToStrF(TotalIncome, ffNumber, 10, 2) + ' บาท' + #13 +
+                       'รายจ่ายรวม: ' + FloatToStrF(TotalExpense, ffNumber, 10, 2) + ' บาท' + #13 +
+                       'คงเหลือสุทธิ: ' + FloatToStrF(Balance, ffNumber, 10, 2) + ' บาท';
 
-  // 3. วาดกราฟแท่ง (Bar) - แยกตามวัน *** ของใหม่ ***
-  chartBar.Series[0].Clear;
+  // เปลี่ยนสีตัวหนังสือตามสถานะการเงิน
+  if Balance < 0 then
+  begin
+    lblStatus.Font.Color := clRed; // ตัวแดง (ถังแตก)
+    lblStatus.Caption := lblStatus.Caption + #13 + '(สถานะ: ขาดดุล! 💸)';
+  end
+  else
+  begin
+    lblStatus.Font.Color := clGreen; // ตัวเขียว (ร่ำรวย)
+    lblStatus.Caption := lblStatus.Caption + #13 + '(สถานะ: การเงินปกติ 👍)';
+  end;
 
-  // เทคนิค: ใช้ StringList ช่วยจำวันที่ (แบบบ้านๆ เข้าใจง่าย)
-  DayList := TStringList.Create;
-  DayList.Sorted := True; // เรียงวันที่ให้สวยงาม
-  DayList.Duplicates := dupIgnore; // วันซ้ำไม่เอา เอาแค่วันละชื่อ
-
-  try
-    // 3.1 รวบรวมรายชื่อ "วันที่" ที่มีทั้งหมดก่อน
+  // --- ส่วนที่ 3: อัปเดตกราฟวงกลม (Pie Chart) ---
+  // *เน้นโชว์เฉพาะ "รายจ่าย" เพื่อดูว่าเราหมดเงินไปกับค่าอะไร*
+  if chartPie.SeriesCount > 0 then
+  begin
+    chartPie.Series[0].Clear;
     for i := 1 to CountItem do
-      DayList.Add(DateToStr(MyData[i].TxDate));
-
-    // 3.2 วนลูปตามวันที่ เพื่อรวมยอดเงินของวันนั้นๆ
-    for i := 0 to DayList.Count - 1 do
     begin
-      DateStr := DayList[i];
-      DaySum := 0;
+      // กรองเอาเฉพาะรายจ่ายมาวาดกราฟ
+      if MyData[i].TransType <> 'รายรับ' then
+        chartPie.Series[0].Add(MyData[i].Amount, MyData[i].Category, clTeeColor);
+    end;
+  end;
 
-      // วนหาใน Database ว่ารายการไหนตรงกับวันนี้บ้าง
-      for j := 1 to CountItem do
+  // --- ส่วนที่ 4: อัปเดตกราฟแท่ง (Bar Chart) ---
+  // *เน้นโชว์ "ยอดจ่ายรายวัน" เพื่อดูแนวโน้มการใช้เงิน*
+  if chartBar.SeriesCount > 0 then
+  begin
+    chartBar.Series[0].Clear;
+
+    DayList := TStringList.Create;
+    DayList.Sorted := True; // เรียงวันที่
+    DayList.Duplicates := dupIgnore; // ไม่เอาวันที่ซ้ำ
+
+    try
+      // 4.1 รวบรวมรายชื่อวันที่ที่มีการ "จ่ายเงิน"
+      for i := 1 to CountItem do
       begin
-        if DateToStr(MyData[j].TxDate) = DateStr then
-          DaySum := DaySum + MyData[j].Amount;
+        if MyData[i].TransType <> 'รายรับ' then
+          DayList.Add(DateToStr(MyData[i].TxDate));
       end;
 
-      // พล็อตแท่งกราฟ (แกน X=วันที่, แกน Y=ยอดเงิน)
-      chartBar.Series[0].Add(DaySum, DateStr, clTeeColor);
-    end;
+      // 4.2 วนลูปตามวัน เพื่อรวมยอดจ่ายของวันนั้นๆ
+      for i := 0 to DayList.Count - 1 do
+      begin
+        DateStr := DayList[i];
+        DaySum := 0;
 
-  finally
-    DayList.Free;
+        for j := 1 to CountItem do
+        begin
+          // ต้องตรงทั้ง "วันที่" และเป็น "รายจ่าย"
+          if (DateToStr(MyData[j].TxDate) = DateStr) and (MyData[j].TransType <> 'รายรับ') then
+            DaySum := DaySum + MyData[j].Amount;
+        end;
+
+        // พล็อตกราฟแท่ง
+        chartBar.Series[0].Add(DaySum, DateStr, clTeeColor);
+      end;
+
+    finally
+      DayList.Free;
+    end;
   end;
 end;
 procedure TForm1.SaveToDisk;
@@ -357,7 +402,8 @@ begin
                   FloatToStr(MyData[i].Amount) + '|' +
                   MyData[i].Category + '|' +    // อย่าลืมบวก '|' เพิ่ม
                   MyData[i].SlipPath + '|' +
-                  DateToStr(MyData[i].TxDate);         // เพิ่มวันที่ต่อท้าย
+                  DateToStr(MyData[i].TxDate) + '|' +        // เพิ่มวันที่ต่อท้าย
+                  MyData[i].TransType;
 
       List.Add(LineData); // เพิ่มบรรทัดนี้ลงในกระดาษ
     end;
@@ -375,9 +421,9 @@ var
   List: TStringList;
   i, p: Integer;
   LineData: String;
-  TempTitle, TempCat, TempSlip: String;
+  TempTitle, TempCat, TempSlip, TempType: String; // <--- เพิ่ม TempType
   TempAmount: Double;
-  TempDate: TDateTime; // <--- 1. เพิ่มตัวแปรวันที่
+  TempDate: TDateTime;
 begin
   // 1. เช็คก่อนว่ามีไฟล์ไหม?
   if not FileExists(ExtractFilePath(Application.ExeName) + 'CoinjiDB.txt') then
@@ -393,7 +439,8 @@ begin
 
     for i := 0 to List.Count - 1 do
     begin
-      LineData := List[i]; // ตัวอย่าง: "ค่าข้าว|50|อาหาร|C:\Pic.jpg|14/02/2026"
+      LineData := List[i];
+      // รูปแบบข้อมูลใหม่: "Title|Amount|Category|SlipPath|Date|TransType"
 
       // --- Week 9: String Parsing (ตัดคำ) ---
 
@@ -404,7 +451,7 @@ begin
 
       // 3.2 ตัด Amount
       p := Pos('|', LineData);
-      if p = 0 then Continue; // กัน Error
+      if p = 0 then Continue;
       TempAmount := StrToFloatDef(Copy(LineData, 1, p-1), 0.0);
       Delete(LineData, 1, p);
 
@@ -415,47 +462,67 @@ begin
         TempCat := Copy(LineData, 1, p-1);
         Delete(LineData, 1, p);
 
-        // --- 3.4 ตัด SlipPath และ Date (Logic ใหม่) ---
-        // ตอนนี้ LineData ที่เหลือคือ "Pathรูป|วันที่" หรือแค่ "Pathรูป" (ของเก่า)
-
+        // 3.4 ตัด SlipPath
         p := Pos('|', LineData);
         if p > 0 then
         begin
-          // กรณีมีทั้งรูปและวันที่ (New Format)
           TempSlip := Copy(LineData, 1, p-1);
           Delete(LineData, 1, p);
 
-          // ที่เหลือสุดท้ายคือ วันที่
-          try
-            TempDate := StrToDate(LineData);
-          except
-            TempDate := Date; // ถ้าวันที่พัง ใช้วันนี้แทน
+          // 3.5 ตัด Date และ TransType (Logic ใหม่ล่าสุด)
+          // ตอนนี้ LineData จะเหลือ: "Date|Type" (ใหม่) หรือ "Date" (เก่า)
+
+          p := Pos('|', LineData);
+          if p > 0 then
+          begin
+             // เจอ | แสดงว่าเป็นแบบใหม่ มีประเภทต่อท้าย
+             try
+               TempDate := StrToDate(Copy(LineData, 1, p-1));
+             except
+               TempDate := Date;
+             end;
+             Delete(LineData, 1, p);
+
+             TempType := LineData; // ตัวสุดท้ายที่เหลือคือ ประเภท (รายรับ/รายจ่าย)
+          end
+          else
+          begin
+             // ไม่เจอ | แสดงว่าเป็นแบบเก่า (มีแต่วันที่)
+             try
+               TempDate := StrToDate(LineData);
+             except
+               TempDate := Date;
+             end;
+             TempType := 'รายจ่าย'; // ค่าเริ่มต้นของไฟล์เก่า
           end;
         end
         else
         begin
-          // กรณีมีแค่รูป ไม่มีวันที่ (Old Format with Slip)
+          // กรณีไฟล์เก่ามาก (มีแค่รูป)
           TempSlip := LineData;
-          TempDate := Date; // ใช้วันปัจจุบันไปก่อน
+          TempDate := Date;
+          TempType := 'รายจ่าย';
         end;
       end
       else
       begin
-        // กรณีไม่มีอะไรต่อท้ายเลย (Old Format no Slip)
+        // กรณีไฟล์ดึกดำบรรพ์
         TempCat := LineData;
         TempSlip := '';
         TempDate := Date;
+        TempType := 'รายจ่าย';
       end;
 
-      // --- เอาข้อมูลยัดใส่ Array คืน ---
+      // --- ยัดใส่ Array ---
       Inc(CountItem);
       with MyData[CountItem] do
       begin
-        Title    := TempTitle;
-        Amount   := TempAmount;
-        Category := TempCat;
-        SlipPath := TempSlip;
-        TxDate   := TempDate; // <--- 2. บันทึกวันที่ที่อ่านได้ (ห้ามใช้ Now)
+        Title     := TempTitle;
+        Amount    := TempAmount;
+        Category  := TempCat;
+        SlipPath  := TempSlip;
+        TxDate    := TempDate;
+        TransType := TempType; // <--- บันทึกประเภทลง Record
       end;
     end;
 
@@ -465,7 +532,13 @@ begin
     begin
       gridHistory.Cells[0, i] := IntToStr(i);
       gridHistory.Cells[1, i] := MyData[i].Category;
-      gridHistory.Cells[2, i] := FloatToStrF(MyData[i].Amount, ffNumber, 10, 2);
+
+      // *** แสดงเครื่องหมาย + หรือ - หน้าตัวเลข ***
+      if MyData[i].TransType = 'รายรับ' then
+        gridHistory.Cells[2, i] := '+' + FloatToStrF(MyData[i].Amount, ffNumber, 10, 2)
+      else
+        gridHistory.Cells[2, i] := '-' + FloatToStrF(MyData[i].Amount, ffNumber, 10, 2);
+
       gridHistory.Cells[3, i] := MyData[i].Title;
     end;
 
@@ -475,7 +548,6 @@ begin
     List.Free;
   end;
 end;
-
 
 procedure TForm1.PageControl1Change(Sender: TObject);
 begin

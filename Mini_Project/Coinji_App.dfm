@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Coinji App_Desk v1.0 By Phuwaset Sibta'
+  Caption = 'CoinJi_Smart Expense Tracker Ai Assistant'
   ClientHeight = 632
   ClientWidth = 914
   Color = clBtnFace
@@ -23,7 +23,7 @@ object Form1: TForm1
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -6
+    ExplicitHeight = 544
     object imgLogo: TImage
       Left = 16
       Top = 16
@@ -6580,8 +6580,8 @@ object Form1: TForm1
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 24
-      Top = 330
+      Left = 241
+      Top = 370
       Width = 74
       Height = 17
       Caption = #3594#3656#3629#3591#3592#3604#3610#3633#3609#3607#3638#3585
@@ -6629,9 +6629,9 @@ object Form1: TForm1
         #3629#3639#3656#3609#3654)
     end
     object mmoNote: TMemo
-      Left = 24
-      Top = 369
-      Width = 369
+      Left = 241
+      Top = 393
+      Width = 161
       Height = 105
       ScrollBars = ssVertical
       TabOrder = 1
@@ -6678,6 +6678,17 @@ object Form1: TForm1
       Time = 0.173952430552162700
       TabOrder = 5
     end
+    object rgType: TRadioGroup
+      Left = 24
+      Top = 393
+      Width = 185
+      Height = 105
+      Caption = #3611#3619#3632#3648#3616#3607#3608#3640#3619#3585#3619#3619#3617
+      Items.Strings = (
+        #3619#3634#3618#3619#3633#3610
+        #3619#3634#3618#3592#3656#3634#3618)
+      TabOrder = 6
+    end
   end
   object pnlBottom: TPanel
     Left = 0
@@ -6689,13 +6700,14 @@ object Form1: TForm1
     Color = clWhite
     ParentBackground = False
     TabOrder = 2
-    ExplicitTop = 582
+    ExplicitTop = 544
+    ExplicitWidth = 912
     object lblStatus: TLabel
       AlignWithMargins = True
       Left = 16
       Top = 6
       Width = 128
-      Height = 50
+      Height = 25
       Margins.Left = 20
       Caption = #3618#3629#3604#3619#3623#3617': 0 '#3610#3634#3607
       Font.Charset = DEFAULT_CHARSET
@@ -6728,6 +6740,7 @@ object Form1: TForm1
       Align = alRight
       ScrollBars = ssVertical
       TabOrder = 1
+      ExplicitLeft = 622
     end
   end
   object pnlRight: TPanel
@@ -6740,9 +6753,8 @@ object Form1: TForm1
     Color = clHoneydew
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 545
-    ExplicitWidth = 539
-    ExplicitHeight = 652
+    ExplicitWidth = 471
+    ExplicitHeight = 544
     object gridHistory: TStringGrid
       Left = 0
       Top = 347
@@ -6755,20 +6767,19 @@ object Form1: TForm1
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goFixedRowDefAlign]
       TabOrder = 0
       OnSelectCell = gridHistorySelectCell
-      ExplicitLeft = 88
-      ExplicitTop = 272
-      ExplicitWidth = 320
-      ExplicitHeight = 120
+      ExplicitWidth = 471
+      ExplicitHeight = 197
     end
     object PageControl1: TPageControl
       Left = 0
       Top = 0
       Width = 473
       Height = 347
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alTop
       TabOrder = 1
       OnChange = PageControl1Change
+      ExplicitWidth = 471
       object TabSheet1: TTabSheet
         Caption = #3626#3633#3604#3626#3656#3623#3609' (Pie)'
         object chartPie: TChart
@@ -6784,10 +6795,7 @@ object Form1: TForm1
           View3DOptions.Rotation = 360
           Align = alClient
           TabOrder = 0
-          ExplicitLeft = 32
-          ExplicitTop = 32
-          ExplicitWidth = 400
-          ExplicitHeight = 250
+          ExplicitWidth = 463
           DefaultCanvas = 'TGDIPlusCanvas'
           ColorPaletteIndex = 13
           object Series1: TPieSeries
@@ -6828,10 +6836,6 @@ object Form1: TForm1
             'TChart')
           Align = alClient
           TabOrder = 0
-          ExplicitLeft = 64
-          ExplicitTop = 40
-          ExplicitWidth = 400
-          ExplicitHeight = 250
           DefaultCanvas = 'TGDIPlusCanvas'
           ColorPaletteIndex = 13
           object Series2: TBarSeries
@@ -6855,7 +6859,7 @@ object Form1: TForm1
     end
   end
   object dlgOpenPic: TOpenPictureDialog
-    Left = 384
-    Top = 496
+    Left = 376
+    Top = 80
   end
 end
